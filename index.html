@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca Virtual - IFSP Birigui</title>
+  <link rel="stylesheet" href="styles.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+ 
+  <div id="loader" class="loader">
+    <div class="spinner"></div>
+  </div>
+  
+  <header>
+    <div class="header-container">
+      <div class="logo-container">
+        <img src="img/Cora Coralina-Photoroom.png" alt="Logo Biblioteca" class="logo">
+        <img src="img/logo_ifsp.bri_white.fw.png" alt="Logo IFSP" class="logo-secundaria">
+      </div>
+      
+      <h1 class="sr-only">Biblioteca Virtual CBI‑BRI</h1>
+      <div class="titulo-header" aria-hidden="true">
+        COORDENADORIA DE BIBLIOTECA ‑ CBI‑BRI
+      </div>
+
+      <div class="header-right">
+        <form class="busca" role="search">
+          <label for="campo-pesquisa" class="sr-only">Buscar no site</label>
+          <input id="campo-pesquisa" type="text" placeholder="Buscar no acervo...">
+          <button type="submit" aria-label="Iniciar busca">
+            <i class="fas fa-search" aria-hidden="true"></i>
+          </button>
+        </form>
+
+        <button id="toggleTheme" class="btn-theme" aria-label="Alternar tema">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+        
+        <button id="menuBtn" class="menu-toggle" aria-expanded="false" aria-label="Menu">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav id="navMenu" aria-label="Menu principal" class="menu-esquerdo">
+      <div class="menu-header">
+        <h2>Menu</h2>
+        <button class="fechar-menu" aria-label="Fechar menu">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      
+      <div class="menu-items">
+        <a href="https://sites.google.com/view/cbi-bri/faq" target="_blank">
+          <i class="fas fa-question-circle" aria-hidden="true"></i> FAQ
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/tutoriais" target="_blank">
+          <i class="fas fa-book" aria-hidden="true"></i> Tutoriais
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/links-%C3%BAteis" target="_blank">
+          <i class="fas fa-link" aria-hidden="true"></i> Links Úteis
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/peri%C3%B3dicos" target="_blank">
+          <i class="fas fa-newspaper" aria-hidden="true"></i> Periódicos
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/manuais" target="_blank">
+          <i class="fas fa-clipboard-list" aria-hidden="true"></i> Manuais
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/fontes-de-pesquisa" target="_blank">
+          <i class="fas fa-search" aria-hidden="true"></i> Fontes de pesquisa
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/documentos" target="_blank">
+          <i class="fas fa-file-alt" aria-hidden="true"></i> Documentos
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/doa%C3%A7%C3%B5es" target="_blank">
+          <i class="fas fa-hand-holding-heart" aria-hidden="true"></i> Doações
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/sugest%C3%A3o-de-compra" target="_blank">
+          <i class="fas fa-shopping-cart" aria-hidden="true"></i> Sugestão de compra
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/concursos-culturais" target="_blank">
+          <i class="fas fa-trophy" aria-hidden="true"></i> Concursos culturais
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/semana-da-biblioteca" target="_blank">
+          <i class="fas fa-calendar-alt" aria-hidden="true"></i> Semana da Biblioteca
+        </a>
+      </div>
+    </nav>
+
+    <section id="apresentacao" class="apresentacao">
+      <div class="info-box">
+        <h2 class="section-title"><i class="fas fa-info-circle" aria-hidden="true"></i> Apresentação</h2>
+        <p>Bem-vindo à Biblioteca do IFSP Birigui! Aqui você encontra um vasto acervo de livros, artigos e materiais educativos disponíveis para consulta e empréstimo. Navegue com facilidade, acesse conteúdos atualizados e aproveite todos os serviços que preparamos para apoiar seus estudos e pesquisas. Conhecimento ao seu alcance, onde e quando precisar!</p>
+      </div>
+      
+      <!-- Equipe -->
+      <div class="info-box">
+        <h2 class="section-title"><i class="fas fa-users" aria-hidden="true"></i> Nossa Equipe</h2>
+        <div class="team-cards">
+          <div class="team-card">
+            <div class="team-icon"><i class="fas fa-user-tie" aria-hidden="true"></i></div>
+            <h3>Daniel Abraão Pando</h3>
+            <p>Bibliotecário-Documentalista</p>
+          </div>
+          <div class="team-card">
+            <div class="team-icon"><i class="fas fa-user-tie" aria-hidden="true"></i></div>
+            <h3>Viviane Renata Ventura Rissi</h3>
+            <p>Bibliotecário-Documentalista</p>
+          </div>
+          <div class="team-card">
+            <div class="team-icon"><i class="fas fa-user" aria-hidden="true"></i></div>
+            <h3>Edvan Ferreira dos Santos</h3>
+            <p>Auxiliar de biblioteca</p>
+          </div>
+          <div class="team-card">
+            <div class="team-icon"><i class="fas fa-user" aria-hidden="true"></i></div>
+            <h3>Marina Yoko Ueda Rocha</h3>
+            <p>Auxiliar de biblioteca</p>
+          </div>
+          <div class="team-card">
+            <div class="team-icon"><i class="fas fa-user" aria-hidden="true"></i></div>
+            <h3>Marileide Andrade de Jesus Rocha</h3>
+            <p>Assistente administrativo</p>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Horário -->
+      <div class="info-box">
+        <h2 class="section-title"><i class="fas fa-clock" aria-hidden="true"></i> Horário de Atendimento</h2>
+        <div class="horario-container">
+          <div class="horario-icon">
+            <i class="fas fa-calendar-day" aria-hidden="true"></i>
+          </div>
+          <div class="horario-info">
+            <p>De segunda a sexta-feira</p>
+            <p class="horario-destaque">9h às 21h30</p>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Serviços -->
+      <div class="info-box">
+        <h2 class="section-title"><i class="fas fa-concierge-bell" aria-hidden="true"></i> Serviços Oferecidos</h2>
+        <div class="services-grid">
+          <div class="service-item">
+            <i class="fas fa-info-circle" aria-hidden="true"></i>
+            <p>Orientação ao usuário sobre serviços online</p>
+          </div>
+          <div class="service-item">
+            <i class="fas fa-exchange-alt" aria-hidden="true"></i>
+            <p>Empréstimo entre bibliotecas (EEB)</p>
+          </div>
+          <div class="service-item">
+            <i class="fas fa-file-alt" aria-hidden="true"></i>
+            <p>Normalização de trabalhos acadêmicos</p>
+          </div>
+          <div class="service-item">
+            <i class="fas fa-book" aria-hidden="true"></i>
+            <p>Empréstimo e devolução</p>
+          </div>
+          <div class="service-item">
+            <i class="fas fa-bookmark" aria-hidden="true"></i>
+            <p>Reserva e renovação de materiais</p>
+          </div>
+          <div class="service-item">
+            <i class="fas fa-calendar-check" aria-hidden="true"></i>
+            <p>Agendamento de capacitações</p>
+          </div>
+          <div class="service-item">
+            <i class="fas fa-bell" aria-hidden="true"></i>
+            <p>Serviço de alerta de novas aquisições</p>
+          </div>
+          <div class="service-item">
+            <i class="fas fa-id-card" aria-hidden="true"></i>
+            <p>Elaboração de ficha catalográfica</p>
+          </div>
+          <div class="service-item">
+            <i class="fas fa-box" aria-hidden="true"></i>
+            <p>Guarda-volumes</p>
+          </div>
+          <div class="service-item">
+            <i class="fas fa-laptop" aria-hidden="true"></i>
+            <p>Computadores para pesquisa e rede wi-fi</p>
+          </div>
+          <div class="service-item">
+            <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i>
+            <p>Oficinas e capacitações</p>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Contatos -->
+      <div class="info-box">
+        <h2 class="section-title"><i class="fas fa-address-book" aria-hidden="true"></i> Contatos e Redes Sociais</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-phone" aria-hidden="true"></i>
+            <p><strong>Telefone/WhatsApp:</strong> (18) 3643-1033</p>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <p><strong>E-mail:</strong> cbi.bri@ifsp.edu.br</p>
+          </div>
+          <div class="social-links">
+            <a href="https://www.instagram.com/bibliotecaifspbirigui/" target="_blank" class="social-btn">
+              <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
+            </a>
+            <a href="https://www.facebook.com/bibliotecaifspbirigui" target="_blank" class="social-btn">
+              <i class="fab fa-facebook" aria-hidden="true"></i> Facebook
+            </a>
+            <a href="https://www.youtube.com/@bibliotecaifspbirigui" target="_blank" class="social-btn">
+              <i class="fab fa-youtube" aria-hidden="true"></i> YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Pergamum -->
+      <div class="info-box">
+        <h2 class="section-title"><i class="fas fa-book-reader" aria-hidden="true"></i> Meu Pergamum</h2>
+        <p>Acesso ao catálogo da biblioteca:</p>
+        <div class="pergamum-features">
+          <div class="pergamum-feature">
+            <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
+            <p>Login com número do prontuário e senha do SUAP</p>
+          </div>
+          <div class="pergamum-feature">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <p>Busca no acervo</p>
+          </div>
+          <div class="pergamum-feature">
+            <i class="fas fa-bookmark" aria-hidden="true"></i>
+            <p>Reserva de livros</p>
+          </div>
+          <div class="pergamum-feature">
+            <i class="fas fa-sync" aria-hidden="true"></i>
+            <p>Renovação de empréstimos</p>
+          </div>
+          <div class="pergamum-feature">
+            <i class="fas fa-file-alt" aria-hidden="true"></i>
+            <p>Solicitação de ficha catalográfica</p>
+          </div>
+        </div>
+        <a href="https://ifsp.pergamum.com.br/" class="cta-button">
+          <i class="fas fa-external-link-alt" aria-hidden="true"></i> Acessar Catálogo Pergamum
+        </a>
+      </div>
+    
+      <!-- Biblioteca Virtual -->
+      <div class="info-box">
+        <h2 class="section-title"><i class="fas fa-laptop" aria-hidden="true"></i> Biblioteca Virtual Pearson / Normas ABNT</h2>
+        <div class="pearson-container">
+          <div class="pearson-icon">
+            <i class="fas fa-book-open" aria-hidden="true"></i>
+          </div>
+          <p>Acesse através do Catálogo da Biblioteca ou pelo SUAP > Links Úteis</p>
+        </div>
+      </div>
+
+      <!-- Galeria -->
+      <div class="info-box">
+        <h2 class="section-title"><i class="fas fa-images" aria-hidden="true"></i> Nossos Espaços</h2>
+        <div class="galeria-container">
+          <div class="galeria-imagens">
+            <img src="img/1.jpg" alt="Sala de leitura" onclick="abrirModal(this)">
+            <img src="img/2.jpg" alt="Evento literário" onclick="abrirModal(this)">
+            <img src="img/3.jpg" alt="Evento literário" onclick="abrirModal(this)">
+            <img src="img/4.jpg" alt="Evento literário" onclick="abrirModal(this)">
+            <img src="img/5.jpg" alt="Evento literário" onclick="abrirModal(this)">
+          </div>
+          <p class="galeria-tip">Clique nas imagens para ampliar</p>
+        </div>
+      </div>
+    </section>
+
+    <aside aria-labelledby="titulo-novidades" class="novidades">
+      <h3 id="titulo-novidades"><i class="fas fa-newspaper" aria-hidden="true"></i> Novidades</h3>
+      
+      <div class="news-item">
+        <div class="news-date">17/05/2025</div>
+        <h4>Aquisição de novos livros</h4>
+        <p>Nossa biblioteca acaba de receber uma nova remessa de livros técnicos para os cursos de Engenharia e Informática.</p>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-date">10/05/2025</div>
+        <h4>Oficina de escrita científica</h4>
+        <p>Inscreva-se para nossa próxima oficina sobre normas ABNT e escrita acadêmica.</p>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-date">05/05/2025</div>
+        <h4>Clube de leitura</h4>
+        <p>O próximo encontro do clube de leitura acontecerá no dia 20/05. O livro escolhido foi "O Pequeno Príncipe".</p>
+      </div>
+      
+      <div class="eventos-proximos">
+        <h4><i class="fas fa-calendar" aria-hidden="true"></i> Eventos Próximos</h4>
+        <div class="evento">
+          <div class="evento-data">20/05</div>
+          <div class="evento-info">Clube de Leitura - 15h</div>
+        </div>
+        <div class="evento">
+          <div class="evento-data">25/05</div>
+          <div class="evento-info">Oficina de Escrita Científica - 14h</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Modal para imagens -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true">
+    <button class="fechar" aria-label="Fechar imagem">&times;</button>
+    <div class="modal-navigation">
+      <button class="anterior" aria-label="Imagem anterior">
+        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <button class="proxima" aria-label="Próxima imagem">
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+    <img id="imgModal" class="modal-conteudo" alt="">
+    <div class="modal-caption" id="modal-caption"></div>
+  </div>
+
+  <!-- Botão Voltar ao Topo -->
+  <button id="btnVoltarTopo" class="btn-voltar-topo" aria-label="Voltar ao topo">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- Chat de Atendimento -->
+  <div class="chat-container">
+    <div class="chat-header" id="chatHeader">
+      <i class="fas fa-comments" aria-hidden="true"></i> Atendimento
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="chat-message biblioteca">
+        <div class="message-content">
+          Olá! Como podemos ajudar você hoje?
+          <div class="message-time">Agora</div>
+        </div>
+      </div>
+      <div class="chat-options">
+        <button class="chat-option-btn">Como faço para emprestar um livro?</button>
+        <button class="chat-option-btn">Horário de funcionamento</button>
+        <button class="chat-option-btn">Falar com um bibliotecário</button>
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" placeholder="Digite sua mensagem..." id="chatInput">
+      <button id="chatSendBtn">
+        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4>Biblioteca IFSP Birigui</h4>
+        <p>Rua Pedro Cavalo, 709 - Portal da Pérola II</p>
+        <p>Birigui - SP, CEP: 16201-407</p>
+      </div>
+      <div class="footer-section">
+        <h4>Contato</h4>
+        <p>Telefone: (18) 3643-1033</p>
+        <p>Email: cbi.bri@ifsp.edu.br</p>
+      </div>
+      <div class="footer-section">
+        <h4>Redes Sociais</h4>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/bibliotecaifspbirigui/" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.facebook.com/bibliotecaifspbirigui" target="_blank" aria-label="Facebook">
+            <i class="fab fa-facebook" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.youtube.com/@bibliotecaifspbirigui" target="_blank" aria-label="YouTube">
+            <i class="fab fa-youtube" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2025 IFSP - Instituto Federal de São Paulo - Campus Birigui
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
