@@ -1,0 +1,109 @@
+/* Estilos para o seletor de idioma */
+.language-switcher {
+  position: relative;
+  margin-right: 10px;
+}
+
+.language-btn {
+  background: none;
+  border: none;
+  color: var(--header-text);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.language-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.language-btn .lang-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.language-btn .lang-text {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 0;
+  min-width: 150px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.language-switcher.active .language-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(5px);
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: var(--text-color);
+}
+
+.language-option:hover {
+  background-color: var(--highlight-background);
+}
+
+.language-option.active {
+  background-color: var(--highlight-background);
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.language-option .flag-icon {
+  margin-right: 8px;
+  width: 20px;
+  height: 15px;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+/* Animação do botão */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.language-btn.highlight {
+  animation: pulse 1.5s infinite;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .language-btn .lang-text {
+    display: none;
+  }
+}

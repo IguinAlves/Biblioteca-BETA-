@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autores - Biblioteca Virtual IFSP Birigui</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="language-switcher.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Estilos específicos para a página de autores */
+    .autor-card {
+      background-color: var(--card-background);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .autor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+    
+    .autor-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      gap: 1.5rem;
+    }
+    
+    .autor-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-color);
+    }
+    
+    .autor-info h2 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+    }
+    
+    .autor-info .periodo {
+      color: var(--text-light);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    
+    .autor-content {
+      line-height: 1.7;
+    }
+    
+    .autor-content p {
+      margin-bottom: 1rem;
+    }
+    
+    .autor-quote {
+      background-color: var(--highlight-background);
+      border-left: 4px solid var(--primary-color);
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .autor-quote cite {
+      display: block;
+      text-align: right;
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+    
+    .autor-obras {
+      margin-top: 1.5rem;
+    }
+    
+    .autor-obras h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .obras-lista {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    
+    .obra-item {
+      background-color: var(--background-secondary);
+      padding: 0.8rem;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    
+    .obra-item:hover {
+      background-color: var(--highlight-background);
+    }
+    
+    .obra-item .obra-titulo {
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+    
+    .obra-item .obra-ano {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    @media (max-width: 768px) {
+      .autor-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .obras-lista {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+ 
+  <div id="loader" class="loader">
+    <div class="spinner"></div>
+  </div>
+  
+  <header>
+    <div class="header-container">
+      <div class="logo-container">
+        <img src="img/Cora Coralina-Photoroom.png" alt="Logo Biblioteca" class="logo">
+        <img src="img/logo_ifsp.bri_white.fw.png" alt="Logo IFSP" class="logo-secundaria">
+      </div>
+      
+      <h1 class="sr-only">Biblioteca Virtual CBI‑BRI</h1>
+      <div class="titulo-header" aria-hidden="true" data-translate="titulo-header">
+        COORDENADORIA DE BIBLIOTECA ‑ CBI‑BRI
+      </div>
+
+      <div class="header-right">
+        <form class="busca" role="search">
+          <label for="campo-pesquisa" class="sr-only">Buscar no site</label>
+          <input id="campo-pesquisa" type="text" placeholder="Buscar no acervo..." data-translate="buscar-no-site">
+          <button type="submit" aria-label="Iniciar busca" data-translate="iniciar-busca">
+            <i class="fas fa-search" aria-hidden="true"></i>
+          </button>
+        </form>
+
+        <button id="toggleTheme" class="btn-theme" aria-label="Alternar tema" data-translate="alternar-tema">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+        
+        <button id="menuBtn" class="menu-toggle" aria-expanded="false" aria-label="Menu" data-translate="menu">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav id="navMenu" aria-label="Menu principal" class="menu-esquerdo">
+      <div class="menu-header">
+        <h2 data-translate="menu-titulo">Menu</h2>
+        <button class="fechar-menu" aria-label="Fechar menu" data-translate="fechar-menu">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      
+      <div class="menu-items">
+        <a href="index.html">
+          <i class="fas fa-home" aria-hidden="true"></i> <span data-translate="menu-inicio">Início</span>
+        </a>
+        <a href="autores.html" class="active">
+          <i class="fas fa-book-reader" aria-hidden="true"></i> <span data-translate="menu-autores">Autores</span>
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/faq" target="_blank">
+          <i class="fas fa-question-circle" aria-hidden="true"></i> <span data-translate="menu-faq">FAQ</span>
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/tutoriais" target="_blank">
+          <i class="fas fa-book" aria-hidden="true"></i> <span data-translate="menu-tutoriais">Tutoriais</span>
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/links-%C3%BAteis" target="_blank">
+          <i class="fas fa-link" aria-hidden="true"></i> <span data-translate="menu-links">Links Úteis</span>
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/peri%C3%B3dicos" target="_blank">
+          <i class="fas fa-newspaper" aria-hidden="true"></i> <span data-translate="menu-periodicos">Periódicos</span>
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/manuais" target="_blank">
+          <i class="fas fa-clipboard-list" aria-hidden="true"></i> <span data-translate="menu-manuais">Manuais</span>
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/fontes-de-pesquisa" target="_blank">
+          <i class="fas fa-search" aria-hidden="true"></i> <span data-translate="menu-fontes">Fontes de pesquisa</span>
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/documentos" target="_blank">
+          <i class="fas fa-file-alt" aria-hidden="true"></i> <span data-translate="menu-documentos">Documentos</span>
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/doa%C3%A7%C3%B5es" target="_blank">
+          <i class="fas fa-hand-holding-heart" aria-hidden="true"></i> <span data-translate="menu-doacoes">Doações</span>
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/sugest%C3%A3o-de-compra" target="_blank">
+          <i class="fas fa-shopping-cart" aria-hidden="true"></i> <span data-translate="menu-sugestao">Sugestão de compra</span>
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/concursos-culturais" target="_blank">
+          <i class="fas fa-trophy" aria-hidden="true"></i> <span data-translate="menu-concursos">Concursos culturais</span>
+        </a>
+        <a href="https://sites.google.com/view/cbi-bri/semana-da-biblioteca" target="_blank">
+          <i class="fas fa-calendar-alt" aria-hidden="true"></i> <span data-translate="menu-semana">Semana da Biblioteca</span>
+        </a>
+      </div>
+    </nav>
+
+    <section id="autores" class="apresentacao">
+      <div class="info-box">
+        <h2 class="section-title"><i class="fas fa-book-reader" aria-hidden="true"></i> <span data-translate="autores-titulo">Autores em Destaque</span></h2>
+        <p data-translate="autores-descricao">Conheça alguns dos autores e autoras mais importantes da literatura brasileira e mundial, cujas obras e trajetórias inspiram gerações e enriquecem nosso acervo literário.</p>
+      </div>
+      
+      <!-- Cora Coralina -->
+      <div class="autor-card">
+        <div class="autor-header">
+          <img src="https://www.ebiografia.com/img/co/ra/cora_coralina_1_1.jpg" alt="Cora Coralina" class="autor-img">
+          <div class="autor-info">
+            <h2>Cora Coralina</h2>
+            <div class="periodo">1889 - 1985</div>
+          </div>
+        </div>
+        
+        <div class="autor-content">
+          <p data-translate="cora-bio-p1">Ana Lins dos Guimarães Peixoto, ou mais conhecida como Cora Coralina, nascida na cidade de Goiás do Estado de Goiás, foi uma grande escritora brasileira que ocupou o 5º assento da Academia Feminina de Letras de Goiás e a 38º cadeira da Academia Goiana de Letras. Seu legado, que perdura até hoje, é uma prova de resistência e superação das desigualdades vividas por muitas pessoas.</p>
+          
+          <p data-translate="cora-bio-p2">Sua jornada literária começou aos 14 anos, quando escreveu seus primeiros poemas, chegando a publicá-los em 1908 com suas amigas em um jornal de poemas. Logo em seguida escreveu o conto "Tragédia na Roça" que foi publicado pelo "Anuário Histórico e Geográfico do Estado de Goiás", usando pela primeira vez o pseudônimo de Cora Coralina.</p>
+          
+          <p data-translate="cora-bio-p3">Em 1911, ela fugiu para Jaboticabal, interior de São Paulo, com um advogado divorciado que depois se tornaria seu marido. Após o falecimento dele em 1934, Cora ficou com 4 filhos para cuidar, o que a fez deixar de escrever poemas até 1959, trabalhando nesse período como doceira, vendedora de livros e escritora de um jornal.</p>
+          
+          <p data-translate="cora-bio-p4">Em 1959, Ana decide voltar a sua cidade natal, aprende datilografia e em 1965, aos 75 anos, publica seu primeiro livro chamado "O Poema dos Becos de Goiás e Estórias Mais". Sua fama cresceu significativamente após Carlos Drummond de Andrade elogiar seus poemas em 1980, o que fez o público finalmente reconhecer seu talento literário.</p>
+          
+          <p data-translate="cora-bio-p5">Ao longo de sua vida, Cora lutou por um futuro de maior inclusão para as mulheres e mostrou que é possível prosperar no que se deseja fazer, independentemente do tempo necessário. Por sua contribuição à literatura brasileira, recebeu o título de Doutor Honoris Causa da Universidade Federal de Goiás (UFG) e o prêmio Juca Pato da União Brasileira dos Escritores.</p>
+          
+          <div class="autor-quote">
+            <span data-translate="cora-quote">"Feliz aquele que transfere o que sabe e aprende o que ensina."</span>
+            <cite>Cora Coralina</cite>
+          </div>
+        </div>
+        
+        <div class="autor-obras">
+          <h3><i class="fas fa-book" aria-hidden="true"></i> <span data-translate="obras-titulo">Principais Obras</span></h3>
+          <div class="obras-lista">
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="cora-obra-1">Poemas dos Becos de Goiás e Estórias Mais</div>
+              <div class="obra-ano">1965</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="cora-obra-2">Meu Livro de Cordel</div>
+              <div class="obra-ano">1976</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="cora-obra-3">Vintém de Cobre: Meias Confissões de Aninha</div>
+              <div class="obra-ano">1983</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="cora-obra-4">Estórias da Casa Velha da Ponte</div>
+              <div class="obra-ano">1985</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="cora-obra-5">O Tesouro da Casa Velha</div>
+              <div class="obra-ano">1996 (póstuma)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Lilia Moritz Schwarcz -->
+      <div class="autor-card">
+        <div class="autor-header">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Lilia_Schwarcz.jpg/800px-Lilia_Schwarcz.jpg" alt="Lilia Moritz Schwarcz" class="autor-img">
+          <div class="autor-info">
+            <h2>Lilia Moritz Schwarcz</h2>
+            <div class="periodo">1957 - presente</div>
+          </div>
+        </div>
+        
+        <div class="autor-content">
+          <p data-translate="lilia-bio-p1">Lilia Katri Moritz Schwarcz é uma historiadora e antropóloga brasileira nascida em São Paulo. Doutora em antropologia social pela Universidade de São Paulo (USP), é professora titular no Departamento de Antropologia da mesma instituição. Sua carreira acadêmica internacional inclui passagens como professora visitante nas universidades de Oxford, Leiden, Brown, Columbia e Princeton.</p>
+          
+          <p data-translate="lilia-bio-p2">Especialista em história do Brasil Imperial, relações raciais e antropologia histórica, Lilia Schwarcz é uma das mais importantes intelectuais brasileiras da atualidade. Seu trabalho é marcado pela análise crítica da formação da sociedade brasileira, com foco nas questões raciais e na desconstrução de mitos nacionais.</p>
+          
+          <p data-translate="lilia-bio-p3">Em 2023, Lilia Schwarcz foi eleita para a Academia Brasileira de Letras, ocupando a cadeira 9. Além de sua atuação acadêmica, ela também trabalha como curadora de exposições e é colunista do jornal Folha de São Paulo. Publicou mais de 30 livros, muitos deles traduzidos para outros idiomas, e recebeu diversos prêmios por suas contribuições à cultura e à literatura brasileiras.</p>
+          
+          <p data-translate="lilia-bio-p4">Sua obra "Brasil: Uma biografia", escrita em parceria com Heloisa Murgel Starling, é considerada uma das mais importantes análises contemporâneas sobre a história do Brasil, oferecendo uma visão abrangente e crítica da formação do país. Já em "Sobre o autoritarismo brasileiro", a autora analisa as raízes históricas do autoritarismo na sociedade brasileira, tema que continua extremamente relevante no contexto político atual.</p>
+          
+          <div class="autor-quote">
+            <span data-translate="lilia-quote">"Nosso presente anda, mesmo, cheio de passado, e a história não serve como prêmio de consolação."</span>
+            <cite>Lilia Moritz Schwarcz, em "Sobre o Autoritarismo Brasileiro"</cite>
+          </div>
+        </div>
+        
+        <div class="autor-obras">
+          <h3><i class="fas fa-book" aria-hidden="true"></i> <span data-translate="obras-titulo">Principais Obras</span></h3>
+          <div class="obras-lista">
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="lilia-obra-1">Retrato em Branco e Negro</div>
+              <div class="obra-ano">1987</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="lilia-obra-2">O Espetáculo das Raças</div>
+              <div class="obra-ano">1993</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="lilia-obra-3">As Barbas do Imperador</div>
+              <div class="obra-ano">1998</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="lilia-obra-4">Brasil: Uma Biografia</div>
+              <div class="obra-ano">2015</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="lilia-obra-5">Sobre o Autoritarismo Brasileiro</div>
+              <div class="obra-ano">2019</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="lilia-obra-6">Quando Acaba o Século XX</div>
+              <div class="obra-ano">2020</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Rachel de Queiroz -->
+      <div class="autor-card">
+        <div class="autor-header">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Rachel_de_Queiroz%2C_1971.tif/lossy-page1-653px-Rachel_de_Queiroz%2C_1971.tif.jpg" alt="Rachel de Queiroz" class="autor-img">
+          <div class="autor-info">
+            <h2>Rachel de Queiroz</h2>
+            <div class="periodo">1910 - 2003</div>
+          </div>
+        </div>
+        
+        <div class="autor-content">
+          <p data-translate="rachel-bio-p1">Rachel de Queiroz foi uma escritora, jornalista, tradutora e dramaturga brasileira, nascida em Fortaleza, Ceará. Considerada uma das mais importantes autoras da literatura brasileira do século XX, foi a primeira mulher a ingressar na Academia Brasileira de Letras, em 1977, e a primeira a receber o Prêmio Camões, em 1993.</p>
+          
+          <p data-translate="rachel-bio-p2">Pertencente à segunda geração modernista, também conhecida como fase regionalista, Rachel de Queiroz estreou na literatura com o romance "O Quinze", publicado em 1930, quando tinha apenas 20 anos. A obra, que retrata a seca de 1915 no Ceará e seus impactos sociais, é considerada um marco do regionalismo nordestino e da literatura social brasileira.</p>
+          
+          <p data-translate="rachel-bio-p3">Além de sua produção literária, Rachel de Queiroz teve intensa atividade jornalística, escrevendo crônicas para diversos jornais e revistas do país. Sua escrita é marcada pela linguagem direta, pela abordagem de temas sociais e pela representação da vida no sertão nordestino, com especial atenção às questões femininas e às desigualdades sociais.</p>
+          
+          <p data-translate="rachel-bio-p4">Ao longo de sua carreira, Rachel de Queiroz recebeu diversos prêmios e honrarias, incluindo o Prêmio Machado de Assis da Academia Brasileira de Letras pelo conjunto de sua obra. Sua contribuição para a literatura brasileira é inestimável, tendo influenciado gerações de escritores e leitores com sua prosa autêntica e profundamente brasileira.</p>
+          
+          <div class="autor-quote">
+            <span data-translate="rachel-quote">"Sombras vencidas pela miséria e pelo desespero que arrastavam passos inconscientes, na derradeira embriaguez da fome."</span>
+            <cite>Rachel de Queiroz, em "O Quinze"</cite>
+          </div>
+        </div>
+        
+        <div class="autor-obras">
+          <h3><i class="fas fa-book" aria-hidden="true"></i> <span data-translate="obras-titulo">Principais Obras</span></h3>
+          <div class="obras-lista">
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="rachel-obra-1">O Quinze</div>
+              <div class="obra-ano">1930</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="rachel-obra-2">João Miguel</div>
+              <div class="obra-ano">1932</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="rachel-obra-3">Caminho de Pedras</div>
+              <div class="obra-ano">1937</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="rachel-obra-4">As Três Marias</div>
+              <div class="obra-ano">1939</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="rachel-obra-5">Dôra, Doralina</div>
+              <div class="obra-ano">1975</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="rachel-obra-6">Memorial de Maria Moura</div>
+              <div class="obra-ano">1992</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Paulina Chiziane -->
+      <div class="autor-card">
+        <div class="autor-header">
+          <img src="https://opais.co.mz/wp-content/uploads/2024/07/172232409366a8947db098a_1722324093_3x2_lg-1.jpg" alt="Paulina Chiziane" class="autor-img">
+          <div class="autor-info">
+            <h2>Paulina Chiziane</h2>
+            <div class="periodo">1955 - presente</div>
+          </div>
+        </div>
+        
+        <div class="autor-content">
+          <p data-translate="paulina-bio-p1">Paulina Chiziane é uma escritora moçambicana nascida em Manjacaze, província de Gaza, em 4 de junho de 1955. Considerada a primeira mulher moçambicana a publicar um romance, ela prefere se definir como uma contadora de histórias, baseando seu trabalho nas narrativas orais tradicionais de seu país.</p>
+          
+          <p data-translate="paulina-bio-p2">Em 2021, Paulina Chiziane foi laureada com o Prêmio Camões, o mais importante prêmio literário da língua portuguesa, tornando-se a primeira mulher negra a receber essa distinção. Sua obra é marcada pela abordagem de temas como a condição feminina na sociedade africana, a poligamia, as tradições culturais e os conflitos entre a modernidade e as práticas ancestrais.</p>
+          
+          <p data-translate="paulina-bio-p3">Sua estreia na literatura ocorreu em 1984, quando publicou crônicas nas revistas Domingo e Tempo. Em 1990, lançou seu primeiro romance, "Balada de Amor ao Vento", que aborda questões como o amor, o casamento e a poligamia na sociedade moçambicana. Desde então, publicou diversos romances aclamados pela crítica, como "Ventos do Apocalipse" (1993), que retrata os horrores da guerra civil em Moçambique, e "Niketche: Uma História de Poligamia" (2002), que explora as diferentes tradições matrimoniais nas diversas regiões do país.</p>
+          
+          <p data-translate="paulina-bio-p4">A escrita de Paulina Chiziane é caracterizada pela forte presença da oralidade, pela valorização das tradições culturais africanas e pelo olhar crítico sobre as relações de gênero. Sua obra representa uma importante contribuição para a literatura africana em língua portuguesa e para a visibilidade das vozes femininas no continente.</p>
+          
+          <div class="autor-quote">
+            <span data-translate="paulina-quote">"Que a terra é a mãe da natureza e tudo suporta para parir a vida. Como a mulher. Os golpes da vida a mulher suporta no silêncio da terra."</span>
+            <cite>Paulina Chiziane, em "Balada de Amor ao Vento"</cite>
+          </div>
+        </div>
+        
+        <div class="autor-obras">
+          <h3><i class="fas fa-book" aria-hidden="true"></i> <span data-translate="obras-titulo">Principais Obras</span></h3>
+          <div class="obras-lista">
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="paulina-obra-1">Balada de Amor ao Vento</div>
+              <div class="obra-ano">1990</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="paulina-obra-2">Ventos do Apocalipse</div>
+              <div class="obra-ano">1993</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="paulina-obra-3">O Sétimo Juramento</div>
+              <div class="obra-ano">2000</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="paulina-obra-4">Niketche: Uma História de Poligamia</div>
+              <div class="obra-ano">2002</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="paulina-obra-5">O Alegre Canto da Perdiz</div>
+              <div class="obra-ano">2008</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="paulina-obra-6">Na Mão de Deus</div>
+              <div class="obra-ano">2013</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Malala Yousafzai -->
+      <div class="autor-card">
+        <div class="autor-header">
+          <img src="https://piauihoje.com/migration/public_html/media/image_bank/2017/4/malala.jpg" alt="Malala Yousafzai" class="autor-img">
+          <div class="autor-info">
+            <h2>Malala Yousafzai</h2>
+            <div class="periodo">1997 - presente</div>
+          </div>
+        </div>
+        
+        <div class="autor-content">
+          <p data-translate="malala-bio-p1">Malala Yousafzai é uma ativista paquistanesa nascida em 12 de julho de 1997, em Mingora, no Vale do Swat, Paquistão. Conhecida mundialmente por sua luta pelo direito à educação, especialmente para meninas, Malala tornou-se um símbolo global de resistência pacífica e defesa dos direitos humanos.</p>
+          
+          <p data-translate="malala-bio-p2">Sua história ganhou notoriedade internacional em 2012, quando, aos 15 anos, foi vítima de um atentado do Talibã enquanto voltava da escola. Malala foi baleada na cabeça por defender publicamente o direito das meninas à educação, em um momento em que o grupo extremista proibia a frequência escolar feminina na região. Após o ataque, foi transferida para um hospital no Reino Unido, onde se recuperou e continuou sua luta.</p>
+          
+          <p data-translate="malala-bio-p3">Em 2014, aos 17 anos, Malala Yousafzai tornou-se a pessoa mais jovem a receber o Prêmio Nobel da Paz, compartilhando a honraria com o ativista indiano Kailash Satyarthi. O prêmio reconheceu sua luta contra a opressão de crianças e jovens e pelo direito de todos à educação.</p>
+          
+          <p data-translate="malala-bio-p4">Malala fundou o Fundo Malala, uma organização sem fins lucrativos dedicada a garantir que meninas em todo o mundo possam ter acesso a 12 anos de educação gratuita, segura e de qualidade. Em 2017, foi nomeada Mensageira da Paz das Nações Unidas, a mais jovem pessoa a receber esse título. Em 2020, graduou-se em Filosofia, Política e Economia pela Universidade de Oxford.</p>
+          
+          <p data-translate="malala-bio-p5">Além de seu ativismo, Malala é autora de vários livros, incluindo sua autobiografia "Eu Sou Malala", escrita em colaboração com a jornalista Christina Lamb, que se tornou um best-seller internacional e foi traduzida para mais de 40 idiomas. Sua história continua a inspirar pessoas em todo o mundo a lutar pela educação e pelos direitos humanos.</p>
+          
+          <div class="autor-quote">
+            <span data-translate="malala-quote">"Uma criança, um professor, um livro, uma caneta pode mudar o mundo."</span>
+            <cite>Malala Yousafzai, em "Pelo direito das meninas à educação"</cite>
+          </div>
+        </div>
+        
+        <div class="autor-obras">
+          <h3><i class="fas fa-book" aria-hidden="true"></i> <span data-translate="obras-titulo">Principais Obras</span></h3>
+          <div class="obras-lista">
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="malala-obra-1">Eu Sou Malala</div>
+              <div class="obra-ano">2013</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="malala-obra-2">Malala: Minha História em Defesa dos Direitos das Meninas</div>
+              <div class="obra-ano">2014</div>
+            </div>
+            <div class="obra-item">
+              <div class="obra-titulo" data-translate="malala-obra-3">Nós Somos Deslocados</div>
+              <div class="obra-ano">2019</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside aria-labelledby="titulo-novidades" class="novidades">
+      <h3 id="titulo-novidades"><i class="fas fa-newspaper" aria-hidden="true"></i> <span data-translate="novidades-titulo">Novidades</span></h3>
+      
+      <div class="news-item">
+        <div class="news-date">17/05/2025</div>
+        <h4>Aquisição de novos livros</h4>
+        <p>Nossa biblioteca acaba de receber uma nova remessa de livros técnicos para os cursos de Engenharia e Informática.</p>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-date">10/05/2025</div>
+        <h4>Oficina de escrita científica</h4>
+        <p>Inscreva-se para nossa próxima oficina sobre normas ABNT e escrita acadêmica.</p>
+      </div>
+      
+      <div class="news-item">
+        <div class="news-date">05/05/2025</div>
+        <h4>Clube de leitura</h4>
+        <p>O próximo encontro do clube de leitura acontecerá no dia 20/05. O livro escolhido foi "O Pequeno Príncipe".</p>
+      </div>
+      
+      <div class="eventos-proximos">
+        <h4><i class="fas fa-calendar" aria-hidden="true"></i> <span data-translate="eventos-titulo">Eventos Próximos</span></h4>
+        <div class="evento">
+          <div class="evento-data">20/05</div>
+          <div class="evento-info">Clube de Leitura - 15h</div>
+        </div>
+        <div class="evento">
+          <div class="evento-data">25/05</div>
+          <div class="evento-info">Oficina de Escrita Científica - 14h</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Botão Voltar ao Topo -->
+  <button id="btnVoltarTopo" class="btn-voltar-topo" aria-label="Voltar ao topo" data-translate="voltar-ao-topo">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- Chat de Atendimento -->
+  <div class="chat-container">
+    <div class="chat-header" id="chatHeader">
+      <i class="fas fa-comments" aria-hidden="true"></i> <span data-translate="chat-titulo">Atendimento</span>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="chat-message biblioteca">
+        <div class="message-content">
+          <span data-translate="chat-mensagem-inicial">Olá! Como podemos ajudar você hoje?</span>
+          <div class="message-time">Agora</div>
+        </div>
+      </div>
+      <div class="chat-options">
+        <button class="chat-option-btn" data-translate="chat-opcao1">Como faço para emprestar um livro?</button>
+        <button class="chat-option-btn" data-translate="chat-opcao2">Horário de funcionamento</button>
+        <button class="chat-option-btn" data-translate="chat-opcao3">Falar com um bibliotecário</button>
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" placeholder="Digite sua mensagem..." id="chatInput" data-translate="chat-placeholder">
+      <button id="chatSendBtn">
+        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h4 data-translate="rodape-titulo">Biblioteca IFSP Birigui</h4>
+        <p>Rua Pedro Cavalo, 709 - Portal da Pérola II</p>
+        <p>Birigui - SP, CEP: 16201-407</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4 data-translate="rodape-horario">Horário de Funcionamento</h4>
+        <p>Segunda a Sexta: 9h às 21h30</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4 data-translate="rodape-contato">Contato</h4>
+        <p>Telefone: (18) 3643-1033</p>
+        <p>E-mail: cbi.bri@ifsp.edu.br</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p data-translate="rodape-direitos">&copy; 2025 IFSP Birigui - Todos os direitos reservados</p>
+      <p data-translate="rodape-desenvolvido">Desenvolvido por Equipe de TI IFSP</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="translations.js"></script>
+  <script src="language-switcher.js"></script>
+</body>
+</html>
