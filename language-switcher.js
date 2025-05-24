@@ -518,129 +518,108 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Função específica para adicionar atributos data-translate à página de autores
   function addAuthorPageTranslateAttributes() {
-    // Biografias de Cora Coralina
-    const coraParas = document.querySelectorAll('.autor-card:nth-of-type(1) .autor-content p');
-    coraParas.forEach((para, index) => {
-      para.setAttribute('data-translate', `cora-bio-p${index+1}`);
-    });
+    // Identificar cada autor pelo nome em vez de posição
+    const autorCards = document.querySelectorAll('.autor-card');
     
-    // Citação de Cora Coralina
-    const coraQuote = document.querySelector('.autor-card:nth-of-type(1) .autor-quote');
-    if (coraQuote) {
-      const quoteText = coraQuote.childNodes[0].textContent.trim();
-      coraQuote.childNodes[0].remove();
+    autorCards.forEach(card => {
+      const autorName = card.querySelector('.autor-info h2').textContent.trim();
       
-      const quoteSpan = document.createElement('span');
-      quoteSpan.setAttribute('data-translate', 'cora-quote');
-      quoteSpan.textContent = quoteText;
-      
-      coraQuote.insertBefore(quoteSpan, coraQuote.querySelector('cite'));
-    }
-    
-    // Obras de Cora Coralina
-    const coraObras = document.querySelectorAll('.autor-card:nth-of-type(1) .obra-titulo');
-    coraObras.forEach((obra, index) => {
-      obra.setAttribute('data-translate', `cora-obra-${index+1}`);
-    });
-    
-    // Biografias de Lilia Schwarcz
-    const liliaParas = document.querySelectorAll('.autor-card:nth-of-type(2) .autor-content p');
-    liliaParas.forEach((para, index) => {
-      para.setAttribute('data-translate', `lilia-bio-p${index+1}`);
-    });
-    
-    // Citação de Lilia Schwarcz
-    const liliaQuote = document.querySelector('.autor-card:nth-of-type(2) .autor-quote');
-    if (liliaQuote) {
-      const quoteText = liliaQuote.childNodes[0].textContent.trim();
-      liliaQuote.childNodes[0].remove();
-      
-      const quoteSpan = document.createElement('span');
-      quoteSpan.setAttribute('data-translate', 'lilia-quote');
-      quoteSpan.textContent = quoteText;
-      
-      liliaQuote.insertBefore(quoteSpan, liliaQuote.querySelector('cite'));
-    }
-    
-    // Obras de Lilia Schwarcz
-    const liliaObras = document.querySelectorAll('.autor-card:nth-of-type(2) .obra-titulo');
-    liliaObras.forEach((obra, index) => {
-      obra.setAttribute('data-translate', `lilia-obra-${index+1}`);
-    });
-    
-    // Biografias de Rachel de Queiroz
-    const rachelParas = document.querySelectorAll('.autor-card:nth-of-type(3) .autor-content p');
-    rachelParas.forEach((para, index) => {
-      para.setAttribute('data-translate', `rachel-bio-p${index+1}`);
-    });
-    
-    // Citação de Rachel de Queiroz
-    const rachelQuote = document.querySelector('.autor-card:nth-of-type(3) .autor-quote');
-    if (rachelQuote) {
-      const quoteText = rachelQuote.childNodes[0].textContent.trim();
-      rachelQuote.childNodes[0].remove();
-      
-      const quoteSpan = document.createElement('span');
-      quoteSpan.setAttribute('data-translate', 'rachel-quote');
-      quoteSpan.textContent = quoteText;
-      
-      rachelQuote.insertBefore(quoteSpan, rachelQuote.querySelector('cite'));
-    }
-    
-    // Obras de Rachel de Queiroz
-    const rachelObras = document.querySelectorAll('.autor-card:nth-of-type(3) .obra-titulo');
-    rachelObras.forEach((obra, index) => {
-      obra.setAttribute('data-translate', `rachel-obra-${index+1}`);
-    });
-    
-    // Biografias de Paulina Chiziane
-    const paulinaParas = document.querySelectorAll('.autor-card:nth-of-type(4) .autor-content p');
-    paulinaParas.forEach((para, index) => {
-      para.setAttribute('data-translate', `paulina-bio-p${index+1}`);
-    });
-    
-    // Citação de Paulina Chiziane
-    const paulinaQuote = document.querySelector('.autor-card:nth-of-type(4) .autor-quote');
-    if (paulinaQuote) {
-      const quoteText = paulinaQuote.childNodes[0].textContent.trim();
-      paulinaQuote.childNodes[0].remove();
-      
-      const quoteSpan = document.createElement('span');
-      quoteSpan.setAttribute('data-translate', 'paulina-quote');
-      quoteSpan.textContent = quoteText;
-      
-      paulinaQuote.insertBefore(quoteSpan, paulinaQuote.querySelector('cite'));
-    }
-    
-    // Obras de Paulina Chiziane
-    const paulinaObras = document.querySelectorAll('.autor-card:nth-of-type(4) .obra-titulo');
-    paulinaObras.forEach((obra, index) => {
-      obra.setAttribute('data-translate', `paulina-obra-${index+1}`);
-    });
-    
-    // Biografias de Malala Yousafzai
-    const malalaParas = document.querySelectorAll('.autor-card:nth-of-type(5) .autor-content p');
-    malalaParas.forEach((para, index) => {
-      para.setAttribute('data-translate', `malala-bio-p${index+1}`);
-    });
-    
-    // Citação de Malala Yousafzai
-    const malalaQuote = document.querySelector('.autor-card:nth-of-type(5) .autor-quote');
-    if (malalaQuote) {
-      const quoteText = malalaQuote.childNodes[0].textContent.trim();
-      malalaQuote.childNodes[0].remove();
-      
-      const quoteSpan = document.createElement('span');
-      quoteSpan.setAttribute('data-translate', 'malala-quote');
-      quoteSpan.textContent = quoteText;
-      
-      malalaQuote.insertBefore(quoteSpan, malalaQuote.querySelector('cite'));
-    }
-    
-    // Obras de Malala Yousafzai
-    const malalaObras = document.querySelectorAll('.autor-card:nth-of-type(5) .obra-titulo');
-    malalaObras.forEach((obra, index) => {
-      obra.setAttribute('data-translate', `malala-obra-${index+1}`);
+      // Aplicar atributos data-translate com base no nome do autor
+      if (autorName === "Cora Coralina") {
+        // Biografias de Cora Coralina
+        const paragraphs = card.querySelectorAll('.autor-content p');
+        paragraphs.forEach((para, index) => {
+          para.setAttribute('data-translate', `cora-bio-p${index+1}`);
+        });
+        
+        // Citação de Cora Coralina
+        const quote = card.querySelector('.autor-quote span');
+        if (quote) {
+          quote.setAttribute('data-translate', 'cora-quote');
+        }
+        
+        // Obras de Cora Coralina
+        const obras = card.querySelectorAll('.obra-titulo');
+        obras.forEach((obra, index) => {
+          obra.setAttribute('data-translate', `cora-obra-${index+1}`);
+        });
+      }
+      else if (autorName === "Lilia Moritz Schwarcz") {
+        // Biografias de Lilia Schwarcz
+        const paragraphs = card.querySelectorAll('.autor-content p');
+        paragraphs.forEach((para, index) => {
+          para.setAttribute('data-translate', `lilia-bio-p${index+1}`);
+        });
+        
+        // Citação de Lilia Schwarcz
+        const quote = card.querySelector('.autor-quote span');
+        if (quote) {
+          quote.setAttribute('data-translate', 'lilia-quote');
+        }
+        
+        // Obras de Lilia Schwarcz
+        const obras = card.querySelectorAll('.obra-titulo');
+        obras.forEach((obra, index) => {
+          obra.setAttribute('data-translate', `lilia-obra-${index+1}`);
+        });
+      }
+      else if (autorName === "Rachel de Queiroz") {
+        // Biografias de Rachel de Queiroz
+        const paragraphs = card.querySelectorAll('.autor-content p');
+        paragraphs.forEach((para, index) => {
+          para.setAttribute('data-translate', `rachel-bio-p${index+1}`);
+        });
+        
+        // Citação de Rachel de Queiroz
+        const quote = card.querySelector('.autor-quote span');
+        if (quote) {
+          quote.setAttribute('data-translate', 'rachel-quote');
+        }
+        
+        // Obras de Rachel de Queiroz
+        const obras = card.querySelectorAll('.obra-titulo');
+        obras.forEach((obra, index) => {
+          obra.setAttribute('data-translate', `rachel-obra-${index+1}`);
+        });
+      }
+      else if (autorName === "Paulina Chiziane") {
+        // Biografias de Paulina Chiziane
+        const paragraphs = card.querySelectorAll('.autor-content p');
+        paragraphs.forEach((para, index) => {
+          para.setAttribute('data-translate', `paulina-bio-p${index+1}`);
+        });
+        
+        // Citação de Paulina Chiziane
+        const quote = card.querySelector('.autor-quote span');
+        if (quote) {
+          quote.setAttribute('data-translate', 'paulina-quote');
+        }
+        
+        // Obras de Paulina Chiziane
+        const obras = card.querySelectorAll('.obra-titulo');
+        obras.forEach((obra, index) => {
+          obra.setAttribute('data-translate', `paulina-obra-${index+1}`);
+        });
+      }
+      else if (autorName === "Malala Yousafzai") {
+        // Biografias de Malala Yousafzai
+        const paragraphs = card.querySelectorAll('.autor-content p');
+        paragraphs.forEach((para, index) => {
+          para.setAttribute('data-translate', `malala-bio-p${index+1}`);
+        });
+        
+        // Citação de Malala Yousafzai
+        const quote = card.querySelector('.autor-quote span');
+        if (quote) {
+          quote.setAttribute('data-translate', 'malala-quote');
+        }
+        
+        // Obras de Malala Yousafzai
+        const obras = card.querySelectorAll('.obra-titulo');
+        obras.forEach((obra, index) => {
+          obra.setAttribute('data-translate', `malala-obra-${index+1}`);
+        });
+      }
     });
   }
   
