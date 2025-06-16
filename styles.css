@@ -485,7 +485,7 @@ header {
   align-items: center;
   gap: 0.5rem;
   padding: 0.8rem 1.5rem;
-  background-color: var(--accent-color);
+  background-color: #268835;
   color: white;
   border-radius: 8px;
   font-weight: 500;
