@@ -3,7 +3,7 @@
   --primary-color: #2F9E41;
   --primary-hover: #268835;
   --secondary-color: #62bb71;
-  --accent-color: #62bb71;
+  --accent-color: #e8961a;
   --text-color: #333;
   --text-light: #666;
   --background-color: #fff;
@@ -25,7 +25,7 @@ body.dark-theme {
   --primary-color: #3ab954;
   --primary-hover: #2fa647;
   --secondary-color: #7dcb91;
-  --accent-color: #2fa647;
+  --accent-color: #ffb347;
   --text-color: #e0e0e0;
   --text-light: #aaa;
   --background-color: #1a1a1a;
