@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Biblioteca BRI - Tutoriais</title>
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="stylesTuto.css" />
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo-container">
+        <img src="img/Cora Coralina-Photoroom.png" alt="Logo Biblioteca" class="logo" />
+        <img src="img/logo_ifsp.bri_white.fw.png" alt="Logo IFSP" class="logo-secundaria" />
+      </div>
+
+      <h1 class="site-title">COORDENADORIA DE BIBLIOTECA - CBI-BRI</h1>
+
+      <div class="header-right">
+        <form class="search-form" role="search">
+          <label for="campo-pesquisa" class="sr-only">Buscar no site</label>
+          <input id="campo-pesquisa" type="text" placeholder="Buscar no acervo..." />
+          <button type="submit" aria-label="Iniciar busca">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+
+        <button id="toggleTheme" class="btn-theme" aria-label="Alternar tema" title="Alternar tema">
+          <i class="fas fa-moon"></i>
+        </button>
+
+        <button id="languageBtn" class="btn-language" aria-label="Alternar idioma" title="Alternar idioma">
+          <i class="fas fa-globe"></i>
+        </button>
+
+        <button id="menuBtn" class="menu-toggle" aria-expanded="false" aria-label="Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav id="navMenu" aria-label="Menu principal" class="menu-esquerdo">
+      <div class="menu-box">
+        <div class="menu-top">
+          <h2>Menu</h2>
+        </div>
+        <div class="menu-items">
+          <a href="index.html"><i class="fas fa-home"></i> Início</a>
+          <a href="autores.html"><i class="fas fa-book-reader"></i> Autores</a>
+          <a href="https://sites.google.com/view/cbi-bri/faq" target="_blank"><i class="fas fa-question-circle"></i> FAQ</a>
+          <a href="Tutoriais.html" target="_blank" class="active"><i class="fas fa-book"></i> Tutoriais</a>
+          <a href="https://sites.google.com/view/cbi-bri/links-%C3%BAteis" target="_blank"><i class="fas fa-link"></i> Links Úteis</a>
+          <a href="https://sites.google.com/view/cbi-bri/peri%C3%B3dicos" target="_blank"><i class="fas fa-newspaper"></i> Periódicos</a>
+          <a href="https://sites.google.com/view/cbi-bri/manuais" target="_blank"><i class="fas fa-clipboard-list"></i> Manuais</a>
+          <a href="https://sites.google.com/view/cbi-bri/fontes-de-pesquisa" target="_blank"><i class="fas fa-search"></i> Fontes de pesquisa</a>
+          <a href="https://sites.google.com/view/cbi-bri/documentos" target="_blank"><i class="fas fa-file-alt"></i> Documentos</a>
+          <a href="https://sites.google.com/view/cbi-bri/doa%C3%A7%C3%B5es" target="_blank"><i class="fas fa-hand-holding-heart"></i> Doações</a>
+          <a href="https://sites.google.com/view/cbi-bri/sugest%C3%A3o-de-compra" target="_blank"><i class="fas fa-shopping-cart"></i> Sugestão de compra</a>
+          <a href="https://sites.google.com/view/cbi-bri/concursos-culturais" target="_blank"><i class="fas fa-trophy"></i> Concursos culturais</a>
+          <a href="https://sites.google.com/view/cbi-bri/semana-da-biblioteca" target="_blank"><i class="fas fa-calendar-alt"></i> Semana da Biblioteca</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <h2 class="page-title">Tutoriais</h2>
+      <p class="intro-text">Confira os tutoriais abaixo sobre renovações, busca no catálogo, reserva de material e ficha catalográfica</p>
+
+      <ul class="tutorial-list">
+        <li><strong>Renovação online via Pergamum:</strong> Para realizar a renovação do material que está emprestado veja esse tutorial: <a href="#">Renovação online</a></li>
+        <li><strong>Busca no catálogo da biblioteca:</strong> Para realizar a busca de material no catálogo da biblioteca veja esse tutorial: <a href="#">Busca no catálogo</a></li>
+        <li><strong>Reservar material através do catálogo da biblioteca:</strong> Para realizar a reserva de material no catálogo da biblioteca veja esse tutorial: <a href="#">Reservas através do catálogo</a></li>
+        <li><strong>Solicitação de elaboração de ficha catalográfica:</strong> Para realizar a solicitação de elaboração da ficha catalográfica veja esse tutorial: <a href="#">Ficha catalográfica</a></li>
+        <li><strong>Pesquisa por PALAVRA ou ÍNDICE:</strong> Para realizar a pesquisa de material no catálogo da biblioteca veja esse tutorial: <a href="#">Pesquisa por Palavra ou Índice</a></li>
+        <li><strong>Template - apresentação de trabalhos de conclusão de curso:</strong> Documento norteador para apresentação dos TCCs do campus Birigui: <a href="#">template</a></li>
+      </ul>
+    </main>
+  </div>
+</body>
+</html>
